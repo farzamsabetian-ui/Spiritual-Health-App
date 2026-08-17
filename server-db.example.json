@@ -1,0 +1,120 @@
+{
+  "users": [
+    {
+      "email": "admin@demo.org",
+      "name": "Administrador Demo",
+      "password": "Password123!",
+      "role": "admin",
+      "country": "Internacional",
+      "region": "Central"
+    },
+    {
+      "email": "mca@demo.org",
+      "name": "Usuario MCA Demo",
+      "password": "Password123!",
+      "role": "user",
+      "geographicGroup": "Grupo A",
+      "country": "Costa Rica",
+      "region": "San José"
+    },
+    {
+      "email": "auditor@demo.org",
+      "name": "Auditor Demo",
+      "password": "Password123!",
+      "role": "auditor",
+      "country": "Panamá",
+      "region": "Panamá"
+    }
+  ],
+  "formFields": [
+    {
+      "id": "f_sec_general",
+      "label": "Información General y Registro",
+      "type": "section",
+      "description": "Datos identificativos y territoriales del reporte.",
+      "required": false,
+      "order": 0,
+      "validation": { "required": false }
+    },
+    {
+      "id": "f_nombre_mca",
+      "label": "Nombre del Miembro del Cuerpo Auxiliar",
+      "type": "text",
+      "placeholder": "Ej. Nombre Completo",
+      "required": true,
+      "order": 1,
+      "validation": { "required": true, "minLength": 3, "maxLength": 100 }
+    },
+    {
+      "id": "f_fecha_reporte",
+      "label": "Fecha del Periodo Evaluado",
+      "type": "date",
+      "required": true,
+      "order": 2,
+      "validation": { "required": true }
+    },
+    {
+      "id": "f_sec_actividades",
+      "label": "Salud Espiritual y Actividades Comunitarias",
+      "type": "section",
+      "description": "Indicadores cuantitativos y cualitativos de la comunidad.",
+      "required": false,
+      "order": 3,
+      "validation": { "required": false }
+    },
+    {
+      "id": "f_reuniones_oracion",
+      "label": "Número de Reuniones de Oración Realizadas",
+      "type": "number",
+      "placeholder": "0",
+      "required": true,
+      "order": 4,
+      "validation": { "required": true, "min": 0, "max": 1000 }
+    },
+    {
+      "id": "f_estado_actividades",
+      "label": "Evaluación General de Dinamismo",
+      "type": "select",
+      "options": ["En Crecimiento", "Estable", "Requiere Apoyo", "En Consolidación"],
+      "required": true,
+      "order": 5,
+      "validation": { "required": true }
+    },
+    {
+      "id": "f_observaciones",
+      "label": "Observaciones y Reflexiones del MCA",
+      "type": "textarea",
+      "placeholder": "Detalles adicionales, aprendizajes o requerimientos de apoyo...",
+      "required": false,
+      "order": 6,
+      "validation": { "required": false, "maxLength": 2000 }
+    }
+  ],
+  "submissions": [
+    {
+      "id": "sub_demo_001",
+      "userEmail": "mca@demo.org",
+      "submittedAt": "2026-07-01T10:00:00.000Z",
+      "userCountry": "Costa Rica",
+      "userRegion": "San José",
+      "data": {
+        "f_nombre_mca": "Usuario MCA Demo",
+        "f_fecha_reporte": "2026-07-01",
+        "f_reuniones_oracion": 12,
+        "f_estado_actividades": "En Crecimiento",
+        "f_observaciones": "Ejemplo de registro inicial para demostración del sistema."
+      }
+    }
+  ],
+  "notifications": [
+    {
+      "id": "not_welcome",
+      "title": "Sistema Inicializado",
+      "message": "Bienvenido a la plataforma de gestión y reporte institucional.",
+      "timestamp": "2026-07-01T10:00:00.000Z",
+      "read": false,
+      "type": "info"
+    }
+  ],
+  "reports": []
+}

@@ -1,0 +1,584 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-cinzel: "Cinzel", serif;
+}
+
+:root {
+  --app-bg: #141211; /* Deep Warm Espresso/Obsidian Charcoal */
+  --app-text: #EAE5DF; /* Parchment Cream */
+
+  /* Tailwind CSS v4 variables mapping for Dark Mode (Warm Obsidian/Clay Stone) */
+  --color-slate-950: #1C1917; /* Deepest warm card background - Warm Mocha Black */
+  --color-slate-900: #252220; /* Dark warm container/hover background - Warm Clay */
+  --color-slate-850: #312E2B; /* Elegant warm dark border/surface */
+  --color-slate-800: #3A3633; /* Visible warm dark border */
+  --color-slate-750: #6B6661; /* Warm taupe/stone gray label text */
+  --color-slate-700: #8C8680; /* Lighter warm taupe */
+  --color-slate-600: #A8A39D; /* Soft warm stone/gray text */
+  --color-slate-500: #C5C0BA; /* Light sandstone text */
+  --color-slate-400: #EAE5DF; /* Parchment cream for subtitles */
+  --color-slate-300: #F4EFEA; /* Soft alabaster for headings */
+}
+
+.light {
+  --app-bg: #FBF9F6; /* Warm Alabaster/Cream requested by user */
+  --app-text: #3D3A37; /* Warm Espresso/Charcoal requested by user */
+
+  /* Tailwind CSS v4 variables mapping for Light Mode */
+  --color-slate-950: #ffffff; /* pure white for cards and headers */
+  --color-slate-900: #f1f5f9; /* soft slate background/hover */
+  --color-slate-850: #e2e8f0; /* elegant light gray/slate borders */
+  --color-slate-800: #cbd5e1; /* visible slate borders */
+  --color-slate-750: #94a3b8; /* slate-400 */
+  --color-slate-700: #64748b; /* slate-500 */
+  --color-slate-600: #475569; /* slate-600 */
+  --color-slate-500: #334155; /* slate-700 */
+  --color-slate-400: #1e293b; /* slate-800 */
+  --color-slate-300: #0f172a; /* slate-900 for headings */
+
+  /* Map brand colors to clean, modern, and vibrant professional shades */
+  --color-emerald-500: #059669; /* clean emerald-600 */
+  --color-emerald-600: #047857;
+  --color-blue-500: #2563eb; /* royal/blue-600 */
+  --color-blue-600: #1d4ed8;
+  --color-indigo-500: #4f46e5; /* indigo-600 */
+  --color-indigo-600: #4338ca;
+  --color-purple-500: #9333ea; /* purple-600 */
+  --color-purple-600: #7e22ce;
+  --color-amber-500: #d97706; /* amber-600 */
+  --color-amber-600: #b45309;
+}
+
+@layer base {
+  body {
+    background-color: var(--app-bg);
+    color: var(--app-text);
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Hide number input spinner controls for perfect alignment and centering */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+/* Custom Scrollbar for immersive UI feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.4);
+}
+.light ::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.4);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* Elegant high-contrast text color overrides in light mode */
+.light .text-white {
+  color: #000000 !important; /* black font */
+}
+
+/* Ensure the font colors of the form in light mode are perfectly legible and premium by mapping slate variables to standard light mode and high-contrast values */
+.light .user-form-card,
+.light .user-form-card *,
+.light .admin-dashboard-container,
+.light .admin-dashboard-container * {
+  --color-slate-950: #ffffff !important;
+  --color-slate-900: #f1f5f9 !important;
+  --color-slate-850: #e2e8f0 !important;
+  --color-slate-800: #cbd5e1 !important;
+  --color-slate-750: #94a3b8 !important;
+  --color-slate-700: #64748b !important;
+  --color-slate-650: #475569 !important;
+  --color-slate-600: #334155 !important;
+  --color-slate-550: #1e293b !important;
+  --color-slate-500: #0f172a !important;
+  --color-slate-400: #020617 !important;
+  --color-slate-300: #020617 !important;
+  --color-slate-200: #cbd5e1 !important;
+  --color-slate-100: #f1f5f9 !important;
+  --color-slate-5: #ffffff !important;
+}
+
+/* Force standard fonts, headings, labels, select options, paragraphs, spans to pure black inside the form card in light mode */
+.light .user-form-card h1,
+.light .user-form-card h2,
+.light .user-form-card h3,
+.light .user-form-card h4,
+.light .user-form-card label,
+.light .user-form-card p:not(.text-red-500):not(.text-blue-500):not(.text-blue-600):not(.text-emerald-500):not(.text-emerald-600):not(.text-amber-600):not(.text-amber-850),
+.light .user-form-card span:not(.text-red-500):not(.text-blue-500):not(.text-blue-600):not(.text-emerald-500):not(.text-emerald-600):not(.text-amber-600):not(.text-amber-850):not(.text-white):not(button *),
+.light .user-form-card input:not([type="submit"]):not([type="button"]),
+.light .user-form-card select,
+.light .user-form-card textarea,
+.light .user-form-card .text-slate-900,
+.light .user-form-card .text-slate-800,
+.light .user-form-card .text-slate-750,
+.light .user-form-card .text-slate-700,
+.light .user-form-card .text-slate-650,
+.light .user-form-card .text-slate-600,
+.light .user-form-card .text-slate-550,
+.light .user-form-card .text-slate-500,
+.light .user-form-card .text-slate-400,
+.light .user-form-card .text-slate-300,
+.light .admin-dashboard-container h1,
+.light .admin-dashboard-container h2,
+.light .admin-dashboard-container h3,
+.light .admin-dashboard-container h4,
+.light .admin-dashboard-container label,
+.light .admin-dashboard-container p:not(.text-red-500):not(.text-blue-500):not(.text-blue-600):not(.text-emerald-500):not(.text-emerald-600):not(.text-amber-600):not(.text-amber-850),
+.light .admin-dashboard-container span:not(.text-red-500):not(.text-blue-500):not(.text-blue-600):not(.text-emerald-500):not(.text-emerald-600):not(.text-amber-600):not(.text-amber-850):not(.text-white):not(button *):not(.active-tab *),
+.light .admin-dashboard-container input:not([type="submit"]):not([type="button"]),
+.light .admin-dashboard-container select,
+.light .admin-dashboard-container textarea,
+.light .admin-dashboard-container .text-white,
+.light .admin-dashboard-container .text-slate-900,
+.light .admin-dashboard-container .text-slate-800,
+.light .admin-dashboard-container .text-slate-750,
+.light .admin-dashboard-container .text-slate-700,
+.light .admin-dashboard-container .text-slate-650,
+.light .admin-dashboard-container .text-slate-600,
+.light .admin-dashboard-container .text-slate-550,
+.light .admin-dashboard-container .text-slate-500,
+.light .admin-dashboard-container .text-slate-400,
+.light .admin-dashboard-container .text-slate-300 {
+  color: #000000 !important;
+}
+
+/* --- DARK MODE USER FORM AND OVERLAYS OVERRIDES (Warm Obsidian & Sage) --- */
+html:not(.light) .user-form-card {
+  background-color: rgba(28, 25, 23, 0.45) !important; /* warm mocha black background with opacity */
+  border-color: rgba(64, 59, 56, 0.35) !important; /* warm clay border */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Ensure borders are dark in dark mode */
+html:not(.light) .user-form-card .border-slate-100,
+html:not(.light) .user-form-card .border-slate-200,
+html:not(.light) .user-form-card .border-slate-205,
+html:not(.light) .user-form-card .border-slate-250,
+html:not(.light) .user-form-card .border-slate-300 {
+  border-color: rgba(64, 59, 56, 0.4) !important;
+}
+
+/* Text elements inside card in dark mode */
+html:not(.light) .user-form-card h1,
+html:not(.light) .user-form-card h2,
+html:not(.light) .user-form-card h3,
+html:not(.light) .user-form-card h4,
+html:not(.light) .user-form-card label,
+html:not(.light) .user-form-card p:not(.text-red-500):not(.text-blue-500):not(.text-blue-600):not(.text-emerald-500):not(.text-emerald-600):not(.text-amber-600):not(.text-amber-850),
+html:not(.light) .user-form-card span:not(.text-red-500):not(.text-blue-500):not(.text-blue-600):not(.text-emerald-500):not(.text-emerald-600):not(.text-amber-600):not(.text-amber-850):not(.text-white):not(button *) {
+  color: #F4EFEA !important; /* warm parchment text */
+}
+
+/* Specific text color classes */
+html:not(.light) .user-form-card .text-slate-900,
+html:not(.light) .user-form-card .text-slate-800,
+html:not(.light) .user-form-card .text-slate-750,
+html:not(.light) .user-form-card .text-slate-700,
+html:not(.light) .user-form-card .text-slate-650,
+html:not(.light) .user-form-card .text-slate-600,
+html:not(.light) .user-form-card .text-slate-550,
+html:not(.light) .user-form-card .text-slate-500,
+html:not(.light) .user-form-card .text-slate-400,
+html:not(.light) .user-form-card .text-slate-300 {
+  color: #EAE5DF !important;
+}
+
+/* Sub-cards and other helper divs (like grid row items, table columns) in dark mode */
+html:not(.light) .user-form-card .bg-white,
+html:not(.light) .user-form-card .bg-slate-50,
+html:not(.light) .user-form-card .bg-slate-50\/50,
+html:not(.light) .user-form-card .bg-blue-50 {
+  background-color: #252220 !important; /* Warm Clay card bg */
+  border-color: rgba(64, 59, 56, 0.4) !important;
+}
+
+html:not(.light) .user-form-card .hover\:bg-slate-50:hover,
+html:not(.light) .user-form-card .hover\:bg-slate-100:hover {
+  background-color: #312E2B !important;
+}
+
+/* Inputs, Selects, Textareas in dark mode */
+html:not(.light) .user-form-card input:not([type="submit"]):not([type="button"]),
+html:not(.light) .user-form-card select,
+html:not(.light) .user-form-card textarea {
+  background-color: #1C1917 !important; /* Mocha Black */
+  border-color: rgba(64, 59, 56, 0.5) !important; /* warm border */
+  color: #F4EFEA !important;
+}
+
+/* Ensure focus states on inputs do not turn white in dark mode */
+html:not(.light) .user-form-card input:not([type="submit"]):not([type="button"]):focus,
+html:not(.light) .user-form-card select:focus,
+html:not(.light) .user-form-card textarea:focus {
+  background-color: #1C1917 !important;
+  border-color: #8FA89B !important; /* Sage Focus Accent */
+}
+
+html:not(.light) .user-form-card select option {
+  background-color: #252220 !important;
+  color: #F4EFEA !important;
+}
+
+/* Sage-styled container background for icons */
+html:not(.light) .user-form-card .bg-blue-50 {
+  background-color: rgba(143, 168, 155, 0.15) !important;
+  color: #8FA89B !important;
+}
+
+/* Modals and Overlays in dark mode inside UserForm */
+html:not(.light) .fixed .bg-white,
+html:not(.light) .relative.bg-white {
+  background-color: #252220 !important;
+  border-color: rgba(64, 59, 56, 0.5) !important;
+  color: #EAE5DF !important;
+}
+
+html:not(.light) .fixed .text-slate-900,
+html:not(.light) .fixed .text-slate-800 {
+  color: #F4EFEA !important;
+}
+
+html:not(.light) .fixed select,
+html:not(.light) .fixed input {
+  background-color: #1C1917 !important;
+  border-color: rgba(64, 59, 56, 0.5) !important;
+  color: #F4EFEA !important;
+}
+
+html:not(.light) .fixed .bg-slate-50 {
+  background-color: #312E2B !important;
+  border-color: rgba(64, 59, 56, 0.4) !important;
+  color: #EAE5DF !important;
+}
+
+/* Base custom placeholders for light mode inputs */
+.light ::placeholder {
+  color: #94a3b8 !important; /* slate-400 placeholder */
+}
+
+/* Preserve original white text in specific UI elements that have colored backgrounds or are state components */
+.light button .text-white,
+.light button.text-white,
+.light .bg-blue-600 .text-white,
+.light .bg-blue-600.text-white,
+.light .bg-blue-600 *,
+.light .bg-blue-500 .text-white,
+.light .bg-blue-500.text-white,
+.light .bg-blue-500 *,
+.light .bg-indigo-600 .text-white,
+.light .bg-indigo-600.text-white,
+.light .bg-indigo-600 *,
+.light .bg-indigo-500 .text-white,
+.light .bg-indigo-500.text-white,
+.light .bg-indigo-500 *,
+.light .bg-emerald-600 .text-white,
+.light .bg-emerald-600.text-white,
+.light .bg-emerald-600 *,
+.light .bg-emerald-500 .text-white,
+.light .bg-emerald-500.text-white,
+.light .bg-emerald-500 *,
+.light .bg-purple-600 .text-white,
+.light .bg-purple-600.text-white,
+.light .bg-purple-600 *,
+.light .bg-purple-500 .text-white,
+.light .bg-purple-500.text-white,
+.light .bg-purple-500 *,
+.light .bg-red-600 *,
+.light .bg-red-500 *,
+.light .bg-amber-600 *,
+.light .bg-amber-500 *,
+.light .bg-rose-600 *,
+.light .bg-rose-500 *,
+.light .rounded-full.bg-blue-500 *,
+.light .rounded-full.bg-emerald-500 *,
+.light .rounded-full.bg-indigo-500 *,
+.light .rounded-full.bg-purple-500 *,
+.light .badge *,
+.light .active-tab *,
+.light .toast-white,
+.light #notification_toast *,
+.light [role="tooltip"] *,
+.light .recharts-tooltip-wrapper *,
+.light .recharts-default-tooltip * {
+  color: #ffffff !important;
+}
+
+/* Override chart component backgrounds for tooltip and elements in light mode */
+.light .recharts-default-tooltip {
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+.light .recharts-tooltip-item {
+  color: #1e293b !important;
+}
+
+/* Soft transition for smooth theme switching */
+.light, .light * {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.1s ease;
+}
+
+/* High-contrast dark font for multiselect options dropdown in both light and dark modes */
+.multiselect-options-dropdown,
+.multiselect-options-dropdown * {
+  color: #000000 !important;
+}
+
+.multiselect-options-dropdown span,
+.multiselect-options-dropdown label {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+/* Selected option highlight */
+.multiselect-options-dropdown label.bg-blue-50,
+.multiselect-options-dropdown label.bg-blue-50 span {
+  color: #1e40af !important; /* blue-800 */
+}
+
+.multiselect-options-dropdown label.bg-amber-50,
+.multiselect-options-dropdown label.bg-amber-50 span {
+  color: #92400e !important; /* amber-800 */
+}
+
+/* Header text inside dropdown */
+.multiselect-options-dropdown .text-slate-500,
+.multiselect-options-dropdown .text-slate-500 span {
+  color: #334155 !important;
+}
+
+.multiselect-options-dropdown .text-blue-600 {
+  color: #2563eb !important;
+}
+
+/* Optimize green/emerald elements for better legibility and contrast in light mode */
+.light .bg-emerald-500 {
+  background-color: #059669 !important; /* emerald-600 */
+}
+.light .bg-emerald-600 {
+  background-color: #047857 !important; /* emerald-700 */
+}
+.light .text-emerald-400 {
+  color: #047857 !important; /* emerald-700 */
+}
+.light .text-emerald-300 {
+  color: #065f46 !important; /* emerald-800 */
+}
+.light .text-emerald-500 {
+  color: #047857 !important; /* emerald-700 */
+}
+.light .border-emerald-400 {
+  border-color: #047857 !important; /* emerald-700 */
+}
+.light .border-emerald-500\/30 {
+  border-color: rgba(4, 120, 87, 0.4) !important;
+}
+.light .bg-emerald-600\/10 {
+  background-color: rgba(5, 150, 105, 0.15) !important;
+}
+.light .bg-emerald-500\/10 {
+  background-color: rgba(5, 150, 105, 0.12) !important;
+}
+.light .border-emerald-500\/20 {
+  border-color: rgba(5, 150, 105, 0.3) !important;
+}
+.light .text-emerald-405 {
+  color: #047857 !important;
+}
+
+/* ==========================================================================
+   ESTILOS DE OPTIMIZACIÓN PARA IMPRESIÓN Y EXPORTACIÓN A PDF
+   ========================================================================== */
+@media print {
+  /* Configuración de página: Márgenes estándar profesionales y ocultación de encabezados del navegador */
+  @page {
+    size: letter portrait;
+    margin: 18mm 15mm 18mm 15mm;
+  }
+
+  /* Forzar colores de fondo y gráficos en la impresión */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Ocultar barra de desplazamiento */
+  * {
+    scrollbar-width: none !important;
+  }
+  *::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Forzar tema claro de alta legibilidad para ahorro de tinta y presentación formal executive */
+  html, body, #root, main, .mx-auto, .space-y-6, .min-h-\[600px\], .admin-dashboard-container {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #0f172a !important; /* Slate-900 para máxima legibilidad */
+    height: auto !important;
+    overflow: visible !important;
+    overflow-y: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Asegurar que las tarjetas oscuras se transformen en paneles limpios con bordes definidos */
+  .bg-slate-900\/40,
+  .bg-slate-950\/40,
+  .bg-slate-950\/45,
+  .bg-slate-900\/50,
+  .bg-slate-900\/60,
+  .bg-slate-950 {
+    background-color: #f8fafc !important; /* Slate-50 */
+    background: #f8fafc !important;
+    border-color: #cbd5e1 !important; /* Slate-300 */
+    color: #1e293b !important;
+  }
+
+  /* Ajustar textos secundarios, títulos y etiquetas */
+  h1, h2, h3, h4, .text-white {
+    color: #0f172a !important;
+  }
+  p, .text-slate-300, .text-slate-400 {
+    color: #334155 !important; /* Slate-700 */
+  }
+  .text-slate-500 {
+    color: #64748b !important; /* Slate-500 */
+  }
+
+  /* Forzar que los textos dentro de gráficos Recharts sean negros/oscuros */
+  .recharts-text, 
+  .recharts-label,
+  .recharts-cartesian-axis-tick-value,
+  .recharts-legend-item-text,
+  text,
+  tspan {
+    fill: #1e293b !important;
+    color: #1e293b !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+  }
+
+  /* Bordes de tablas y cuadrículas en gris nítido */
+  .border-slate-800,
+  .border-slate-850,
+  .border-slate-900,
+  .border-slate-800\/80 {
+    border-color: #cbd5e1 !important;
+  }
+
+  /* Impedir que las filas de tablas se corten entre páginas */
+  tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Hacer que los encabezados de tabla se repitan elegantemente si la tabla pasa a otra página */
+  thead {
+    display: table-header-group !important;
+  }
+
+  /* Forzar que las secciones de reporte comiencen en una nueva página */
+  .page-break {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  /* Desactivar scrolls y alturas fijas de listas internas (mostrar contenido completo) */
+  .overflow-y-auto,
+  .max-h-52,
+  .max-h-96,
+  .max-h-\[400px\],
+  .max-h-\[500px\] {
+    max-height: none !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Evitar saltos de página extraños que rompan tarjetas o gráficos individuales por la mitad */
+  .bg-slate-900\/40,
+  .bg-slate-950\/40,
+  .rounded-2xl,
+  .recharts-wrapper,
+  .recharts-responsive-container,
+  .grid-cols-1,
+  .grid-cols-2,
+  .grid-cols-3 {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Ocultar elementos puramente interactivos, menús dinámicos o botones en la exportación */
+  button,
+  .print\:hidden,
+  .sticky,
+  #header-menu-portal,
+  .fixed,
+  .absolute.bottom-4,
+  #dashboard-actions-dropdown-trigger {
+    display: none !important;
+  }
+
+  /* Forzar visibilidad y formato de alta calidad para el documento impreso del MCA */
+  #printable-mca-form-document {
+    display: block !important;
+    visibility: visible !important;
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  /* Desactivar fijado sticky de filtros y menús */
+  .sticky {
+    position: relative !important;
+    top: auto !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
+
+/* Premium Embedded iframe & Form Container Styling */
+.user-form-card iframe {
+  border-radius: 16px !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(143, 168, 155, 0.04), 0 10px 30px rgba(61, 58, 55, 0.02) !important;
+  background-color: #FBF9F6 !important;
+  outline: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.user-form-card iframe:focus {
+  outline: 2px solid #8FA89B !important;
+  outline-offset: 2px;
+}
+

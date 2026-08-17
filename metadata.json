@@ -1,0 +1,6 @@
+{
+  "name": "Portal de Salud Espiritual",
+  "description": "Plataforma interactiva para crear formularios dinámicos con validación personalizada, arrastrar y soltar campos, autenticación por roles, notificaciones en tiempo real, análisis con inteligencia artificial de los resultados y descarga de reportes PDF.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
