@@ -9,12 +9,15 @@
 [![Gemini AI](https://img.shields.io/badge/Google%20Gemini-2.5%20Flash-8e75ff.svg?logo=google)](https://ai.google.dev/)
 [![D3.js / Recharts](https://img.shields.io/badge/Data%20Viz-D3%20%26%20Recharts-orange.svg)](https://recharts.org/)
 [![License: Demonstration Only](https://img.shields.io/badge/License-Demonstration%20Only-red.svg)](LICENSE)
+[![Architecture Guide](https://img.shields.io/badge/Architecture-Deep%20Dive-emerald.svg)](ARCHITECTURE.md)
 
 ---
 
 ## 📌 Executive Summary
 
 The **Portal de Salud Espiritual** is an end-to-end data gathering, validation, and executive analytics platform built for institutional coordinators and Auxiliary Board Members (MCA). It bridges complex qualitative and quantitative field reporting with institutional-grade data validation, multi-user reconciliation, automated AI-assisted synthesis, and print-ready PDF exports.
+
+> 📖 **Deep Dive**: For an in-depth architectural breakdown of design decisions, data models, and engineering rationale, see [**ARCHITECTURE.md**](ARCHITECTURE.md).
 
 Designed for high usability across varying technical backgrounds, the platform provides distinct, role-tailored workflows ranging from dynamic form generation for administrators to step-by-step reporting for field coordinators and cross-regional data exploration for regional analytics teams.
 
